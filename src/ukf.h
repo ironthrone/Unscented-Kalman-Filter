@@ -11,7 +11,7 @@ using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
 class UKF {
-public:
+  public:
 
   ///* initially set to false, set to true in first call of ProcessMeasurement
   bool is_initialized_;
@@ -53,10 +53,13 @@ public:
   double std_radphi_;
 
   ///* Radar measurement noise standard deviation radius change in m/s
-  double std_radrd_ ;
+  double std_radrd_;
 
   ///* Weights of sigma points
   VectorXd weights_;
+  MatrixXd R_lidar;
+  MatrixXd R_radar;
+  MatrixXd Q_;
 
   ///* State dimension
   int n_x_;
@@ -64,10 +67,15 @@ public:
   ///* Augmented state dimension
   int n_aug_;
 
+  int n_sigma_;
+
   ///* Sigma point spreading parameter
   double lambda_;
 
+  long last_timestamp;
 
+  std::ofstream lidar_nis_file_;
+  std::ofstream radar_nis_file;
   /**
    * Constructor
    */
@@ -102,6 +110,8 @@ public:
    * @param meas_package The measurement at k+1
    */
   void UpdateRadar(MeasurementPackage meas_package);
+
+  void Update(MatrixXd Zsig, const MatrixXd S, const VectorXd z_pred, const VectorXd z);
 };
 
 #endif /* UKF_H */
