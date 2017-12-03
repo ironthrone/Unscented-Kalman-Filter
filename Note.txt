@@ -1,0 +1,5 @@
+To debug and tune parameters ,there are some important aspect:
+1. init P according to sensor type
+2. careful for angle normalization
+3. calculate NIS value and tune process noise according it
+4. If there are obvious diff in the  start step , it is time to tune inited P
