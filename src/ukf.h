@@ -111,7 +111,6 @@ class UKF {
    */
   void UpdateRadar(MeasurementPackage meas_package);
 
-  void Update(MatrixXd Zsig, const MatrixXd S, const VectorXd z_pred, const VectorXd z);
 };
 
 #endif /* UKF_H */
